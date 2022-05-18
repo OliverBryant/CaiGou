@@ -84,7 +84,7 @@ public class UserController {
             System.out.println(str[0]);
             for (int j = 0; j < str.length; j++) {
                 commodity = commodityService.getById(Integer.parseInt(str[j]));
-                System.out.println("!!!!!!!!!!"+commodity);
+//                System.out.println("!!!!!!!!!!"+commodity);
                 Map<String, Object> temp = new HashMap<>();
                 temp.put("com_image", commodity.getComImage());
                 temp.put("com_name", commodity.getComName());

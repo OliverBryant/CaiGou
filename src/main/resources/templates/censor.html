@@ -35,7 +35,7 @@
         </div>
       <div class="cart_theme">
         <div class="cart_header">
-          <span class="">选择  <input type="checkbox" id="checkAll" onclick="checkAll()"/></span>
+          <span class="">选择  <input type="checkbox" id="checkAll" onchange="checkAll()"/></span>
           <span class="header_0">图片</span>
           <span class="header_1">名称</span>
           <span class="header_1">数量</span>
@@ -51,7 +51,7 @@
 
               <li  th:each="maps:${commodity}">
                 <div class="cart_checkbox">
-                  <input type="checkbox" class="commodity" name="comId" th:value="${maps.com_id}" onclick="sum_a(this);"/>
+                  <input type="checkbox" class="commodity" name="comId" th:value="${maps.com_id}"/>
 
                 </div>
                 <div class="cart_content_img">

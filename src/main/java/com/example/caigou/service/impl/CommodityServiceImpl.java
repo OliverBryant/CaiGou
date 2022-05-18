@@ -51,18 +51,23 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
     @Override
     public List<Map<String, Object>> guessYouLike(int userId) {
-        int count = 0, tag = 0;
+        int count = 0, tag = 0, i = 0;
         List<Map<String, Object>> list = new ArrayList<>();
-        while (count < 8) {
-            if (tag > 7) {
-                break;
+        List<String> myTag = commodityMapper.guessYouLikeTag(userId);
+        count = myTag.size();
+        while (i < count) {
+            if (i == 0) {
+                List<Map<String, Object>> temp = commodityMapper.guessYouLike(myTag.get(i), (8 / count + 8 % count));
+                for (Map<String, Object> map : temp) {
+                    list.add(map);
+                }
+            } else {
+                List<Map<String, Object>> temp = commodityMapper.guessYouLike(myTag.get(i), 8/count);
+                for (Map<String, Object> map : temp) {
+                    list.add(map);
+                }
             }
-            List<Map<String, Object>> temp = commodityMapper.guessYouLike(userId, tag);
-            for (Map<String, Object> map : temp) {
-                list.add(map);
-                count++;
-            }
-            tag++;
+            i++;
         }
         return list;
     }
@@ -71,6 +76,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     public List<Map<String, Object>> suggestByView() {
         QueryWrapper<Commodity> queryWrapper = new QueryWrapper<>();
         queryWrapper
+                .eq("com_status",2)
                 .select("com_id", "com_name", "com_image", "com_price")
                 .orderByAsc("com_view");
 

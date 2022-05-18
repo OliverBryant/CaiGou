@@ -78,7 +78,7 @@ public class CommodityController {
                 if (suffix.equals("jpg") || suffix.equals("jpeg") || suffix.equals("png") || suffix.equals("gif")) {
                     String fileName = UUID.randomUUID().toString().replaceAll("-", "") + "." + suffix;
                     System.out.println(fileName);
-                    String imgFilePath = "/home/oliver/Pictures/image/";//新生成的图片
+                    String imgFilePath = "E:/image/";//新生成的图片
 
                     File targetFile = new File(imgFilePath, fileName);
                     if (!targetFile.getParentFile().exists()) { //注意，判断父级路径是否存在
@@ -182,7 +182,7 @@ public class CommodityController {
                 updateWrapper
                         .eq("com_id",comId[i])
                         .set("com_status",2);
-            } else if(state.equals("反驳选择")){
+            } else if(state.equals("驳回选择")){
                 updateWrapper
                         .eq("com_id",comId[i])
                         .set("com_status",1);
@@ -216,10 +216,9 @@ public class CommodityController {
                         .eq("com_id",comId[i])
                         .set("com_status",1);
                 commodityService.update(updateWrapper);
-            } else if(state.equals("反驳选择")){
-                updateWrapper
-                        .eq("com_id",comId[i]);
-                commodityService.remove(updateWrapper);
+            } else if(state.equals("删除商品")){
+                commodityService.removeById(comId[i]);
+
             }
         }
         return "redirect:/caigou/commodity/view";
