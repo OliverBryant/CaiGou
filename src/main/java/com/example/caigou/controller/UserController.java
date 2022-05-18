@@ -201,7 +201,7 @@ public class UserController {
             if (suffix.equals("jpg") || suffix.equals("jpeg") || suffix.equals("png") || suffix.equals("gif")) {
                 String fileName = UUID.randomUUID().toString().replaceAll("-", "") + "." + suffix;
                 System.out.println(fileName);
-                String imgFilePath = "/home/oliver/Pictures/image/";//新生成的图片
+                String imgFilePath = "E:/image/";//新生成的图片
 
                 File targetFile = new File(imgFilePath, fileName);
                 if (!targetFile.getParentFile().exists()) { //注意，判断父级路径是否存在

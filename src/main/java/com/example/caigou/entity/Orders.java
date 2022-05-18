@@ -38,5 +38,4 @@ public class Orders implements Serializable {
 
     private Integer orderTotal;
 
-    private int com_id;
 }
