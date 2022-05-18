@@ -307,9 +307,9 @@ document.getElementById("head_list").onmouseover = function(){
 const statu = document.querySelectorAll('.status')
 const title = document.getElementsByClassName('statu')
 const status = new Map([
-    ["0","交易成功"],
+    ["0","订单异常"],
     ["1","订单取消"],
-    ["2","待支付"]
+    ["2","交易成功"]
 ])
 let num
 for(let i=0;i<statu.length;i++){

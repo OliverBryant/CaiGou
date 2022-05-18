@@ -18,15 +18,19 @@
             <a th:href="@{/caigou/user/login}" th:if="${session.loginUser}==null">登录</a>
             <a th:href="@{/caigou/user/register}" th:if="${session.loginUser}==null">注册</a>
 
-            <a th:href="@{/caigou/user/pCommodity}" style="float: left;height:40px;"id="head_name"  th:if="${session.loginUser}!=null">
-                <div style="height: 35px" class="head_name" >
-                    <img th:src="${session.userImage}" style="width: 35px;height: 35px;float: left;  border-radius: 50%;">
+            <a th:href="@{/caigou/user/pCommodity}" style="float: left;height:40px;" id="head_name"
+               th:if="${session.loginUser}!=null">
+                <div style="height: 35px" class="head_name">
+                    <img th:src="${session.userImage}"
+                         style="width: 35px;height: 35px;float: left;  border-radius: 50%;">
                     <span style="display: inline-block;
              vertical-align: middle;
              line-height: 34px;padding-left: 5px " th:text="${session.userName}">潘登登</span></div>
             </a>
 
-            <a th:href="@{/caigou/cart/myCart}" style="padding-left: 20px"  th:if="${session.loginUser}!=null"><img src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/cat.png" style="width: 35px;height: 35px"></a>
+            <a th:href="@{/caigou/cart/myCart}" style="padding-left: 20px" th:if="${session.loginUser}!=null"><img
+                    src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/cat.png"
+                    style="width: 35px;height: 35px"></a>
 
             <div
                     id="head_list"
@@ -44,9 +48,6 @@
                     <li><a th:href="@{/caigou/user/logout}">退出登录</a></li>
                 </ul>
             </div>
-
-
-
 
 
         </div>
@@ -77,29 +78,29 @@
         </div>
         <div class="cart_theme">
             <form th:action="@{/caigou/order/finish}" name="order">
-            <div class="order_address">
-                <div class="order_address_title">
-                    <span>订单地址：</span>
-                </div>
-                <div class="address">
+                <div class="order_address">
+                    <div class="order_address_title">
+                        <span>订单地址：</span>
+                    </div>
+                    <div class="address">
                     <textarea rows="3" name="address" style="width: 100%;height: 100%;font-size: 20px"
                               placeholder="请输入你的地址"></textarea>
-                </div>
-                <div class="order_address_title">
-                    <span>联系电话：</span>
-                </div>
-                <div class="address">
+                    </div>
+                    <div class="order_address_title">
+                        <span>联系电话：</span>
+                    </div>
+                    <div class="address">
 
-                    <input type="text" name="" style="width: 100%;height: 30px" placeholder="请输入你的联系电话">
+                        <input type="text" name="" style="width: 100%;height: 30px" placeholder="请输入你的联系电话">
 
+                    </div>
                 </div>
-            </div>
-            <div class="cart_header">
-                <span class="header_1">商品</span>
-                <span class="header_2">价格</span>
-            </div>
+                <div class="cart_header">
+                    <span class="header_1">商品</span>
+                    <span class="header_2">价格</span>
+                </div>
 
-<!--            <form th:action="@{/caigou/order/finish}" name="order">-->
+                <!--            <form th:action="@{/caigou/order/finish}" name="order">-->
 
                 <div class="cart_content">
                     <ul>

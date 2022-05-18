@@ -99,17 +99,21 @@ public class UserController {
 
         List<Map<String,Object>> list1 = orderService.myOrders(userId);
         List<Map<String,Object>> list2 = new ArrayList<>();
-        System.out.println(orderService.myOrders(userId));
         Map<String,Object> map1;
         for (int i = 0; i < list1.size(); i++) {
             map1 = list1.get(i);
+            if (!map1.containsKey("order_address")){
+                map1.put("order_address",null);
+            }
             String[] str1 = map1.get("com_id").toString().split("_");
+            map1.put("num",str1.length);
             /*QueryWrapper<Commodity> queryWrapper1 = new QueryWrapper<>();
             queryWrapper1.eq("com_id",str1[0]);*/
             Commodity commodity1 = commodityService.getById(str1[0]);
             map1.put("com_image",commodity1.getComImage());
             list2.add(map1);
         }
+        System.out.println("list2"+list2.toString());
         model.addAttribute("order",list2);
 
 
