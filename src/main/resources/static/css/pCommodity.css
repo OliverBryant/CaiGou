@@ -1,0 +1,777 @@
+
+
+a{
+    text-decoration: none;
+}
+.bg{
+    background-color: rgb(43,87,162);
+}
+
+.head{
+    margin-top: 20px;
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid gray;
+}
+.left{
+    margin-left: 20px;
+    display: inline-block;
+    float: left;
+    height: 100%;
+}
+.left span:nth-child(1){
+    color: rgb(149,171,208);
+    font-size: 19px;
+}
+.left span:nth-child(2){
+    color: rgb(43,87,162);
+    font-size: 24px;
+}
+.right{
+    margin-right: 50px;
+    display: inline-block;
+    float: right;
+    height: 100%;
+}
+.right a{
+    text-decoration: none;
+    color: #33a58e;
+    cursor:pointer;
+}
+
+.right a .head_name>span:hover{
+    color: #2b57a2;
+}
+
+.right .head_list{
+    display: none;
+
+    border:1px solid #dedbdb;
+    border-radius:10px 10px 10px 10px;
+}
+.right .head_list >ul{
+    padding-left: 0;
+}
+.right .head_list >ul>li{
+    list-style: none;
+    margin-top: 5px;
+    color: #2b57a2;
+    cursor:pointer;
+}
+
+
+/*中间部分样式*/
+.nav {
+    overflow: hidden;
+}
+
+.nav .nav-logo {
+    float: left;
+    margin-left: 10%;
+    margin-top: 20px;
+    width: 180px;
+    overflow: hidden;
+
+}
+.nav .nav-logo>a>img{
+    width: 100%;
+    height: auto;
+}
+
+
+.nav-left {
+    position: absolute;
+    float: left;
+    margin-top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav .nav-left > ul > li {
+    display: inline-block;
+    margin: 0 50px;
+}
+
+.nav ul > li > a {
+    text-decoration: none;
+    color: #2b57a2;
+    font-weight: bold;
+
+}
+
+.nav ul > li > a:hover {
+    color: #95abd0;
+}
+
+.nav-right {
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    height: 69px;
+    line-height: 69px;
+}
+
+.in {
+    height: 40px;
+    width: 300px;
+    background-color: #eaeef6;
+    border: 1px solid #eaeef6;
+    border-radius: 34px 0 0 34px;
+    float: left;
+}
+
+.in:hover {
+    border-color: #68696a;
+}
+
+.nav-right input {
+    outline: none;
+}
+
+.btn_in {
+    border: none;
+    height: 40px;
+    width: 70px;
+    background-color: #33a58e;
+    float: right;
+    border-radius: 0 34px 34px 0;
+}
+
+
+/*--------------------------个人资料----------------------------*/
+.body {
+    overflow: hidden;
+    width: 100%;
+}
+
+.body li {
+    list-style: none;
+}
+
+.body .left {
+    float: left;
+    width: 20%;
+}
+
+.body .left ul {
+    padding: 5px;
+}
+
+.body .left li {
+    text-align: center;
+    width: 98%;
+    height: 40px;
+    line-height: 40px;
+    color: #33a58e;
+}
+
+.body .left li:hover {
+    /*  background-color: gray;
+      color: #eaeef6;
+      border-right: 5px rgb(43,87,162) solid;*/
+    box-shadow: 0 0 6px #afb0b2;
+}
+
+.box {
+    overflow: hidden;
+    border-bottom: #b2aeae 1px solid;
+}
+
+.box .text1 {
+    display: inline-block;
+    height: 100px;
+    line-height: 100px;
+}
+
+.box .text {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+}
+
+.box .context {
+    color: #b2aeae;
+}
+
+.box .picture {
+    display: inline-block;
+    float: right;
+    margin: 10px 10px 0 0;
+}
+
+.box .picture #input {
+    display: none;
+}
+
+.box .picture input {
+    border: 0;
+    text-align: center;
+    height: 35px;
+    font-size: 24px;
+    outline-color: #68696a;
+    background-color: white;
+}
+
+.box .picture img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+
+.body .right {
+    position: relative;
+    float: left;
+    width: 68%;
+    min-height: 700px;
+
+}
+
+.own {
+    display: block;
+}
+
+.own-btn-group {
+    margin-top: 90px;
+    margin-left: 300px;
+}
+
+.own-btn-group .own-btn {
+    width: 200px;
+    height: 40px;
+    margin: 0 20px;
+    border: none;
+    background-color: #f35c23;
+    color: white;
+}
+
+/*-------------------------------地址管理---------------------------------*/
+.AddressManage {
+    display: none;
+}
+
+.AddressManage li {
+    overflow: hidden;
+    border-radius: 6px;
+    margin-top: 15px;
+    background-color: #fff;
+}
+
+/*图标*/
+.AddressManage .icon {
+    float: left;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.AddressManage .icon .Lable {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: coral;
+    color: white;
+}
+
+/*详细内容*/
+.AddressManage .content {
+    float: left;
+    padding-right: 50px;
+}
+
+.content .name {
+    font-size: 1.1em;
+    font-weight: bolder;
+}
+
+.content .phone {
+    color: #68696a;
+}
+
+.defaul {
+    display: none;
+    font-size: 0.9em;
+    color: #f1480a;
+    border: #f1480a 1px solid;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/*修改*/
+/*.AddressManage .revise{
+    float: right;
+    margin-top: 20px;
+}
+.revise button{
+    outline:none;
+    border: none;
+}
+.revise .iconfont{
+    color: #33a58e;
+    font-size: 1.3em;
+}
+.revise .iconfont:active{
+    background-color: #33a58e;
+    color: white;
+}
+!*-------------------------------修改及添加界面-----------------------------------*!
+.ChangeAddress{
+    display: none;
+    position: fixed;
+    width: 450px;
+    height: 350px;
+    top: 200px;
+    left: 500px;
+    border-radius: 10px;
+    border: #aeacac 1px solid;
+    z-index: 99;
+    margin: 0 auto;
+    background-color: gray;
+}
+.ChangeAddress ul{
+    padding: 5px;
+}
+.ChangeAddress ul li{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+}
+.ChangeAddress .title{
+    display: inline-block;
+    width: 90px;
+}
+.ChangeAddress .text{
+    height: 40px;
+    width: 300px;
+    background-color: #e3dfdf;
+    outline-color: #aeacac;
+    border-radius: 6px;
+    border: none;
+}
+.ChangeAddress .choose{
+    width: 20px;
+    height: 20px;
+    margin-left: 50px;
+}
+.ChangeAddress .btn{
+    display: block;
+    width: 200px;
+    height: 35px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 8px;
+    background-color: #f35c23;
+    color: white;
+}
+.ChangeAddress .btn:active{
+    background-color: #f1480a;
+}*/
+/*------------------------------修改密码----------------------------------*/
+.setPassword {
+    display: none;
+}
+
+.setPassword ul {
+    padding: 10px;
+}
+
+.setPassword ul li {
+    margin: 10px 0 10px 300px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.setPassword .pasText {
+    display: inline-block;
+    width: 100px;
+}
+
+.setPassword .Pas-in {
+    height: 40px;
+    width: 300px;
+    background-color: #e3dfdf;
+    outline-color: #aeacac;
+    border-radius: 6px;
+    border: none;
+}
+.ver{
+    height: 40px;
+    width: 200px;
+    background-color: #e3dfdf;
+    outline-color: #aeacac;
+    border-radius: 6px;
+    border: none;
+}
+#error {
+    display: none;
+    color: red;
+}
+.error{
+    display: none;
+    color: red;
+}
+
+.setPassword .setBtn {
+    display: block;
+    width: 200px;
+    height: 35px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 8px;
+    background-color: #f35c23;
+    color: white;
+}
+.verBut{
+    width: 100px;
+    height: 41px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 8px;
+    background-color: #baf8bd;
+    color: black;
+}
+/*-------------------我发布的商品----------------------*/
+.Release {
+    display: none;
+}
+.Release li{
+    margin-top: 10px;
+}
+.shell {
+    overflow: hidden;
+}
+
+.Release .img {
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+
+.Release .release-img1 {
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+}
+
+.Release .release-img2 {
+    /*display: none;*/
+    position: relative;
+    top: -104px;
+    opacity: 0.6;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    z-index: 99;
+}
+
+.Release .describe {
+    position: relative;
+    height: 110px;
+    float: left;
+    margin-left: 20px;
+}
+
+.off {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    border: #33a58e 1px solid;
+    border-radius: 5px;
+}
+
+/*--------------------------我买到的--------------------------*/
+.myBuy {
+    display: none;
+}
+.myBuy li{
+    margin-top: 10px;
+}
+.myBuy .buy-img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+}
+
+.myBuy .describe {
+    position: relative;
+    height: 100px;
+    float: left;
+    margin-left: 20px;
+}
+
+/*-----------------------------评价--------------------------------*/
+.evaluation {
+    position: absolute;
+    top: 200px;
+    left: 400px;
+    display: none;
+    place-items: center;
+    text-align: center;
+    z-index: 99;
+    /*background-color: #000;*/
+}
+
+.Container {
+    width: 400px;
+    background-color: #efeded;
+    padding: 20px 30px;
+    border: 1px solid #d7d4d4;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Container .star-widget input {
+    display: none;
+}
+
+.star-widget {
+    overflow: hidden;
+}
+
+.star-widget label {
+    font-size: 40px;
+    color: white;
+    padding: 10px;
+    float: right;
+    transition: all .2s ease;
+}
+.star-widget .white{
+    color: white;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label {
+    color: #ecc105;
+}
+
+.star-widget input:checked ~ label {
+    color: #ecc105;
+}
+
+input#rate-5:checked ~ label {
+    color: #fe7;
+    text-shadow: 0 0 20px #952;
+}
+
+.Container .ttt {
+    display: block;
+}
+
+input:checked ~ .ttt {
+    display: block;
+}
+
+.ttt header {
+    width: 100%;
+    font-size: 25px;
+    color: #ed470a;
+    font-weight: 500;
+    margin: 5px 0 20px 0;
+    text-align: center;
+    transition: all .2s ease;
+}
+
+form .textarea {
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+form .textarea textarea {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #eee;
+    border: 1px solid #d7d4d4;
+    background-color: #a9a7a7;
+    padding: 10px;
+    font-size: 17px;
+    resize: none;
+}
+
+form .evaluationBtn {
+    height: 45px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+form .evaluationBtn button {
+    height: 100%;
+    width: 100%;
+    border: 1px solid #444;
+    outline: none;
+    background-color: #222;
+    color: #999;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+form .evaluationBtn button:hover {
+    background-color: #1b1b1b;
+}
+
+/*---------------------------订单----------------------------- */
+.order {
+    display: none;
+}
+.order p{
+    margin: 0;
+}
+.order li{
+    display: flex;
+    flex-direction: column;
+    min-width: 650px;
+    margin-top: 10px;
+    border-bottom: #7abaff 1px solid;
+}
+
+.order .shell{
+    display: flex;
+    justify-content: start;
+    height: 110px;
+}
+
+.order .buy-img {
+    float: left;
+    width: 110px;
+    height: 110px;
+    border-radius: 6px;
+}
+
+.order .describe {
+    display: flex;
+    height: 100px;
+}
+.describe .content{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 20px;
+}
+.describe .pice{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 90px;
+}
+.tail{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 40px;
+}
+.real{
+    align-self: flex-end;
+    font-weight: 550;
+}
+.statu{
+    align-self: flex-end;
+    color: #f8703e;
+}
+.order .number{
+    color: #aeacac;
+    margin-top: 10px;
+}
+.order .date{
+    color: #aeacac;
+    margin-top: 10px;
+}
+/*-----------------------------------------------------------------------*/
+/*尾部样式*/
+.footer {
+    border-top: 1px solid gray;
+}
+
+.footer li {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+.footer li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(51, 165, 142);
+}
+
+.footer address a {
+    margin-left: 40px;
+    color: rgb(51, 165, 142);
+}
+
+.footer h2, h3, h4 {
+    margin-left: 40px;
+    color: #2b57a2;
+}
+
+.top {
+    height: 400px;
+    width: 100%;
+    /*background-color: red;*/
+}
+
+.top .left {
+    float: left;
+    margin: 0;
+    height: 100%;
+    width: 33%;
+    /*background-color: blue;*/
+}
+
+.left p {
+    margin-left: 40px;
+    color: gray;
+}
+
+.top .mid {
+    float: left;
+    margin: 0;
+    height: 100%;
+    width: 33%;
+    /*background-color: green;*/
+}
+
+.mid .mid-left {
+    float: left;
+    width: 49%;
+}
+
+.mid ul {
+    margin-left: 40px;
+}
+
+.mid li a {
+    font-size: 24px;
+}
+
+.mid .mid-right {
+    float: left;
+    width: 49%;
+}
+
+.top .right {
+    float: left;
+    margin: 0;
+    height: 100%;
+    width: 33%;
+    /*background-color: gold;*/
+}
+
+.bto {
+    height: 50px;
+    width: 100%;
+    /*background-color: pink;*/
+    padding-left: 40px;
+    line-height: 50px;
+    color: rgb(51, 165, 142);
+}

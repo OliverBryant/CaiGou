@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tyhmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" th:href="@{/css/shoppingCart.css}">
+
+
+</head>
+<body>
+<div class="body">
+    <div class="head">
+        <div class="left">
+            <span>致电我们：</span>
+            <span><b>+86 12345677</b></span>
+        </div>
+        <div class="right">
+            <a th:href="@{/caigou/user/login}" th:if="${session.loginUser}==null">登录</a>
+            <a th:href="@{/caigou/user/register}" th:if="${session.loginUser}==null">注册</a>
+
+            <a th:href="@{/caigou/user/pCommodity}" style="float: left;height:40px;"id="head_name"  th:if="${session.loginUser}!=null">
+                <div style="height: 35px" class="head_name" >
+                    <img th:src="${session.userImage}" style="width: 35px;height: 35px;float: left;  border-radius: 50%;">
+                    <span style="display: inline-block;
+             vertical-align: middle;
+             line-height: 34px;padding-left: 5px " th:text="${session.userName}">潘登登</span></div>
+            </a>
+
+            <a th:href="@{/caigou/cart/myCart}" style="padding-left: 20px"  th:if="${session.loginUser}!=null"><img src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/cat.png" style="width: 35px;height: 35px"></a>
+
+            <div
+                    id="head_list"
+                    class="head_list"
+                    style="  position:fixed;
+          z-index: 99;
+          opacity:0.9;
+          width:100px;
+          height:120px;
+          background-color: white;
+          text-align: center">
+                <ul>
+                    <li><a th:href="@{/caigou/user/pCommodity}">个人中心</a></li>
+                    <li><a th:href="@{/caigou/commodity/release}">发布商品</a></li>
+                    <li><a th:href="@{/caigou/user/logout}">退出登录</a></li>
+                </ul>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="nav">
+            <div class="nav-logo">
+                <a th:href=@{/caigou/index}>
+                    <img src="/img/logo.png">
+                </a>
+            </div>
+            <div class="nav-left">
+                <ul>
+                    <li><a th:href=@{/caigou/index}>首页</a></li>
+                    <li><a th:href=@{/caigou/mall}>商城</a></li>
+                    <li><a th:href=@{/caigou/about}>关于</a></li>
+                    <li><a th:href=@{/caigou/contact}>联系</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <form th:action="@{/caigou/search}" method="get">
+                    <div>
+                        <input class="in" type="search" name="keyword" th:value="${keyword}" placeholder="输入搜索的商品">
+                        <button class="btn_in" type="submit">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="cart_theme">
+            <div class="cart_header">
+                <span class="header_0">选择</span>
+                <span class="header_1">商品</span>
+                <span class="header_2">价格</span>
+                <span class="header_3">操作</span>
+            </div>
+
+            <form th:action="@{/caigou/order/confirm}" method="get">
+
+                <div class="cart_content">
+                    <ul>
+                        <li th:each="maps:${commodity}">
+                            <div class="cart_checkbox">
+                                <input type="checkbox" class="commodity" name="comId"
+                                       th:value="|${maps.com_price}_${maps.com_id}|" onclick="sum_a(this);"/>
+
+                            </div>
+                            <div class="cart_content_img">
+                                <img th:src="${maps.com_image}">
+                            </div>
+                            <div class="cart_content_title">
+                                <span th:text="${maps.com_name}">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</span>
+                            </div>
+                            <div class="cart_content_price">
+                                <span>￥</span>
+                                <span th:text="${maps.com_price}">16</span>
+                            </div>
+                            <div class="cart_content_operation">
+                                <a href="|/caigou/cart/delete?comId=${maps.com_id}|">删除</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="cart_settlement">
+                    <div class="cart_settlement_text">
+                        <span>订单总计</span>
+                        <input  type="text" name="total" id="total_price" value="0" style="border: none;background: transparent;width: 100px" readonly onfocus="this.blur()">
+                        <br>
+                        <br>
+                        <input type="submit" class="settle_accounts" name="settle_accounts" value="结算"
+                               style="width: 100px">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="left">
+            <a href="#">
+                <h2>联系我们</h2>
+            </a>
+            <address><a href="#">hdfkshdhfjk@email.com</a></address>
+            <a href="#">
+                <h2>+86 1231231231</h2>
+                <p class="p">(24小时咨询，全年无休)</p>
+            </a>
+
+        </div>
+        <div class="mid">
+            <div class="mid-left">
+                <h3>公司简介</h3>
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">产品</a></li>
+                    <li><a href="#">联系人</a></li>
+                    <li><a href="#">合作伙伴</a></li>
+                    <li><a href="#">咨询</a></li>
+                </ul>
+            </div>
+            <div class="mid-right">
+                <h3><strong>社交</strong></h3>
+                <ul>
+                    <li><a href="#">微信</a></li>
+                    <li><a href="#">微博</a></li>
+                    <li><a href="#">邮箱</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+
+        </div>
+    </footer>
+    <div class="bottom">
+        <p>版权归菜汪茂所有，侵权必究</p>
+    </div>
+</div>
+<script th:src="@{/js/shoppingCart.js}"></script>
+</body>
+</html>

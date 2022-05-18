@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tyhmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>caigou|管理员</title>
+    <link rel="stylesheet" th:href="@{/css/administrator.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+</head>
+<body>
+<div class="body">
+    <div class="head">
+      <div class="nav-logo">
+        <img src="/img/logo.png">
+      </div>
+       <h1>管理员</h1>
+
+        <span style="float: right;margin-right: 10%">
+            <a th:href="@{/caigou/user/logout}">退出登录</a>
+        </span>
+    </div>
+    <div class="container">
+        <div class="position-relative">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active btn btn-outline-success" th:href="@{/caigou/commodity/admin}">商品审核</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-success" th:href="@{/caigou/commodity/view}">商品管理</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+      <div class="cart_theme">
+        <div class="cart_header">
+          <span class="header_0">选择  <input type="checkbox" id="checkAll" onclick="checkAll()"/></span>
+          <span class="header_1">商品</span>
+          <span class="header_2">价格</span>
+        </div>
+
+        <form th:action="@{/caigou/commodity/verify}" method="get">
+
+          <div class="cart_content">
+            <ul>
+
+              <li  th:each="maps:${commodity}">
+                <div class="cart_checkbox">
+                  <input type="checkbox" class="commodity" name="comId" th:value="${maps.com_id}" onclick="sum_a(this);"/>
+
+                </div>
+                <div class="cart_content_img">
+                  <img th:src="${maps.com_image}">
+                </div>
+                <div class="cart_content_title">
+                  <span th:text="${maps.com_name}">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</span>
+                </div>
+                <div class="cart_content_price">
+                  <span th:text="${maps.com_price}">￥16</span>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="cart_settlement">
+            <div class="cart_settlement_text">
+
+              <input type="submit" class="settle_accounts" name="state" value="审核通过">
+              <input type="submit" class="settle_accounts" name="state" value="反驳选择">
+            </div>
+          </div>
+        </form>
+      </div>
+        <!-- 分页 -->
+        <div th:replace="~{/commons/paging::paging}"></div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="left">
+            <a href="#">
+                <h2>联系我们</h2>
+            </a>
+            <address><a href="#">hdfkshdhfjk@email.com</a></address>
+            <a href="#">
+                <h2>+86 1231231231</h2>
+                <p class="p">(24小时咨询，全年无休)</p>
+            </a>
+
+        </div>
+        <div class="mid">
+            <div class="mid-left">
+                <h3>公司简介</h3>
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">产品</a></li>
+                    <li><a href="#">联系人</a></li>
+                    <li><a href="#">合作伙伴</a></li>
+                    <li><a href="#">咨询</a></li>
+                </ul>
+            </div>
+            <div class="mid-right">
+                <h3><strong>社交</strong></h3>
+                <ul>
+                  <li><a href="#">微信</a></li>
+                    <li><a href="#">微博</a></li>
+                    <li><a href="#">邮箱</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+
+        </div>
+    </footer>
+  <div class="bottom">
+    <p>你好啊你好啊你好啊你好啊你好啊你好啊</p>
+  </div>
+</div>
+<script th:src="@{/js/administrator.js}"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="head" th:fragment="hreder">
+    <div class="left">
+        <span>致电我们：</span>
+        <span><b>+86 12345677</b></span>
+    </div>
+    <div class="right">
+        <a th:href="@{/caigou/user/login}" th:if="${session.loginUser}==null">登录</a>
+        <a th:href="@{/caigou/user/register}" th:if="${session.loginUser}==null">注册</a>
+
+        <a th:href="@{/caigou/user/pCommodity}" style="float: left;height:40px;"id="head_name"  th:if="${session.loginUser}!=null">
+            <div style="height: 35px" class="head_name" >
+                <img th:src="${session.userImage}"  style="width: 35px;height: 35px;float: left;  border-radius: 50%;">
+                <span style="display: inline-block;
+             vertical-align: middle;
+             line-height: 34px;padding-left: 5px " th:text="${session.userName}">潘登登</span></div>
+        </a>
+
+        <a th:href="@{/caigou/cart/myCart}" style="padding-left: 20px"  th:if="${session.loginUser}!=null"><img src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/cat.png" style="width: 35px;height: 35px"></a>
+
+        <div
+                id="head_list"
+                class="head_list"
+                style="  position:fixed;
+          z-index: 99;
+          opacity:0.9;
+          width:100px;
+          height:120px;
+          background-color: white;
+          text-align: center">
+            <ul>
+                <li><a th:href="@{/caigou/user/pCommodity}">个人中心</a></li>
+                <li><a th:href="@{/caigou/commodity/release}">发布商品</a></li>
+                <li><a th:href="@{/caigou/user/logout}">退出登录</a></li>
+            </ul>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+</html>

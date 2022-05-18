@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tyhmeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>商城</title>
+  <link rel="stylesheet" th:href="@{/css/mall.css}">
+
+
+</head>
+<body>
+<div class="body">
+  <div class="head">
+    <div class="left">
+      <span>致电我们：</span>
+      <span><b>+86 12345677</b></span>
+    </div>
+    <div class="right">
+      <a th:href="@{/caigou/user/login}" th:if="${session.loginUser}==null">登录</a>
+      <a th:href="@{/caigou/user/register}" th:if="${session.loginUser}==null">注册</a>
+
+      <a th:href="@{/caigou/user/pCommodity}" style="float: left;height:40px;"id="head_name"  th:if="${session.loginUser}!=null">
+        <div style="height: 35px" class="head_name" >
+          <img th:src="${session.userImage}" style="width: 35px;height: 35px;float: left;  border-radius: 50%;">
+          <span style="display: inline-block;
+             vertical-align: middle;
+             line-height: 34px;padding-left: 5px " th:text="${session.userName}">潘登登</span></div>
+      </a>
+
+      <a th:href="@{/caigou/cart/myCart}" style="padding-left: 20px"  th:if="${session.loginUser}!=null"><img src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/cat.png" style="width: 35px;height: 35px"></a>
+
+      <div
+              id="head_list"
+              class="head_list"
+              style="  position:fixed;
+          z-index: 99;
+          opacity:0.9;
+          width:100px;
+          height:120px;
+          background-color: white;
+          text-align: center">
+        <ul>
+          <li><a th:href="@{/caigou/user/pCommodity}">个人中心</a></li>
+          <li><a th:href="@{/caigou/commodity/release}">发布商品</a></li>
+          <li><a th:href="@{/caigou/user/logout}">退出登录</a></li>
+        </ul>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+  <div class="container">
+    <div class="nav">
+      <div class="nav-logo">
+        <a th:href=@{/caigou/index}>
+          <img src="/img/logo.png">
+        </a>
+      </div>
+      <div class="nav-left">
+        <ul>
+
+          <li><a th:href=@{/caigou/index} id="nav-home">首页</a></li>
+          <li><a th:href=@{/caigou/mall}  id="nav-mall">商城</a></li>
+          <li><a th:href=@{/caigou/about}>关于</a></li>
+          <li><a th:href=@{/caigou/contact}>联系</a></li>
+
+        </ul>
+      </div>
+      <div class="nav-right">
+        <form th:action="@{/caigou/search}" method="get">
+          <div>
+            <input class="in" type="search" name="keyword" th:value="${keyword}" placeholder="输入搜索的商品">
+            <button class="btn_in" type="submit">搜索</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 排序类型-->
+    <div class="sorting">
+      <form class="bitcommerce-ordering" method="get" th:action="@{/caigou/sorting}">
+        <input type="text" name="pag" style="display: none" value="go">
+        <input type="text" name="number" style="display: none" value="1">
+        <select name="sorting_list" class="sorting_list" onchange="this.form.submit()">
+          <option value="menu_order">默认商品排序</option>
+          <option value="price">按价格从低到高</option>
+          <option value="price-desc">按价格从高到低</option>
+        </select>
+       </form>
+    </div>
+    <div class="classification-search">
+      <!--类型目录-->
+      <div class="classification">
+        <span class="classification-title"><strong>商品分类</strong><br></span>
+        <div class="classification-type">
+          <ul class="type-menu">
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=department}"
+              style="cursor:pointer;"><span>&gt;&nbsp;百货</span></a></li>
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=wash_protect}"
+              style="cursor:pointer;"><span>&gt;&nbsp;洗护</span></a></li>
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=food}"
+              style="cursor:pointer;"><span>&gt;&nbsp;食品</span></a></li>
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=men's_clothing}"
+              style="cursor:pointer;"><span>&gt;&nbsp;男装</span></a></li>
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=women's_clothing}"
+              style="cursor:pointer;"><span>&gt;&nbsp;女装</span></a></li>
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=digital}"
+              style="cursor:pointer;"><span>&gt;&nbsp;数码</span></a></li>
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=sport}"
+              style="cursor:pointer;"><span>&gt;&nbsp;运动</span></a></li>
+            <li class="menu-item"><a
+              th:href="@{/caigou/classify?type=beauty_makeup}"
+              style="cursor:pointer;"><span>&gt;&nbsp;美妆</span></a></li>
+            <li class="menu-item"><a
+                    th:href="@{/caigou/classify?type=ornament}"
+                    style="cursor:pointer;"><span>&gt;&nbsp;饰品</span></a></li>
+            <li class="menu-item"><a
+                    th:href="@{/caigou/classify?type=shoe}"
+                    style="cursor:pointer;"><span>&gt;&nbsp;鞋靴</span></a></li>
+            <li class="menu-item"><a
+                    th:href="@{/caigou/classify?type=bags}"
+                    style="cursor:pointer;"><span>&gt;&nbsp;箱包</span></a></li>
+            <li class="menu-item"><a
+                    th:href="@{/caigou/classify?type=book}"
+                    style="cursor:pointer;"><span>&gt;&nbsp;书籍</span></a></li>
+
+            <br>
+          </ul>
+        </div>
+      </div>
+      <!--    搜索-->
+      <!--<div class="search">
+        <span class="search-title"><strong>商品搜索</strong><br></span>
+
+        &lt;!&ndash;<div class="search-box">
+          <div class="search_from">
+            <form class="searchform " method="get" th:action="@{/type_search}"
+                  style="width:100%;max-width:100%;">
+              <input type="text"
+                     name="type_search" id="form_search" value="" placeholder="请输入需要搜索的文字">
+              <input type="image" class="searchsubmit" name="search" src="/img/find.png"
+                     inclick="document.formName.submit()">
+              <a style="margin:0px;height:37px;line-height:37px;top:2px;color:#33a58e;" class="submit fa fa-search"></a>
+              <br>
+            </form>
+            <br>
+          </div>
+        </div>&ndash;&gt;
+
+      </div>-->
+    </div>
+
+    <!--    商品列表-->
+    <div class="product_list">
+      <ul class="products">
+        <li class="product_post" th:each="maps:${commodity}">
+          <div class="product_img">
+            <a
+               th:href="@{|/caigou/commodity/product?comId=${maps.com_id}|}" class="bitImage"
+               th:title="${maps.com_name}"
+               title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+              <img  th:src="${maps.com_image}"
+                    th:alt-title="${maps.com_name}"
+                    src="/img/product_1.png">
+            </a>
+
+          </div>
+          <div class="product_title">
+            <a data-title="true"
+
+               th:href="@{|/caigou/commodity/product?comId=${maps.com_id}|}"
+               class="bitImage-title"
+               th:title="${maps.com_name}"
+               title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+               th:text="${maps.com_name}"
+            >绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+          </div>
+          <div class="product_price">
+            <span class="amount" th:text="${maps.com_price}">¥16</span>
+          </div>
+          <div class="product_detailed">
+            <a th:href="@{|/caigou/commodity/product?comId=${maps.com_id}|}">
+              <button   type="button">查看详情</button>
+            </a>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!--    分页码-->
+    <div class="pagination-box">
+      <div class="pagination">
+        <ul>
+
+          <li > <a th:href="@{|/caigou/sorting?pag=previous&&number=${number}&&sorting_list=${sorting}|}" ></a> </li>
+          <li th:each="maps:${num}"> <a th:href="@{|/caigou/sorting?pag=go&&number=${maps.tt}&&sorting_list=${sorting}|}" ></a> </li>
+          <li> <a th:href="@{|/caigou/sorting?pag=next&&number=${number}&&sorting_list=${sorting}|}" ></a> </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <footer class="footer">
+    <div class="left">
+      <a href="#">
+        <h2>联系我们</h2>
+      </a>
+      <address><a href="#">hdfkshdhfjk@email.com</a></address>
+      <a href="#">
+        <h2>+86 1231231231</h2>
+        <p class="p">(24小时咨询，全年无休)</p>
+      </a>
+
+    </div>
+    <div class="mid">
+      <div class="mid-left">
+        <h3>公司简介</h3>
+        <ul>
+          <li><a href="#">关于我们</a></li>
+          <li><a href="#">产品</a></li>
+          <li><a href="#">联系人</a></li>
+          <li><a href="#">合作伙伴</a></li>
+          <li><a href="#">咨询</a></li>
+        </ul>
+      </div>
+      <div class="mid-right">
+        <h3><strong>社交</strong></h3>
+        <ul>
+          <li><a href="#">微信</a></li>
+          <li><a href="#">微博</a></li>
+          <li><a href="#">邮箱</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="right">
+
+    </div>
+  </footer>
+  <div class="bottom">
+    <p>版权归菜汪茂所有，侵权必究</p>
+  </div>
+</div>
+<script th:src="@{/js/mall.js}">
+</script>
+</body>
+</html>

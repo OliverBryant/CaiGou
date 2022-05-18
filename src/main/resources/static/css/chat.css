@@ -1,0 +1,115 @@
+.fx{
+    display: flex;
+}
+.chat-header {
+    padding: 0.25rem 1.25rem !important;
+}
+
+.connect-btn {
+    position: relative;
+    top: 2px;
+}
+.avarta {
+    height: 36px;
+    width: 36px;
+}
+.chat-title {
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+.chat-content {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    background-color: #e3e3e3;
+    width: 100%;
+}
+/** 其他人的聊天信息布局，名字以及聊天内容布局 */
+.other-chat-info{
+    margin-left: 8px;
+    position: relative;
+    top: -5px;
+    max-width: 60%;
+}
+.name-st{
+    color: #428BCA;
+}
+/** 自己聊天信息布局 */
+.self-chat-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.self-chat-info {
+    margin-right: 8px;
+    position: relative;
+    top: -5px;
+    max-width: 60%;
+}
+.self-name {
+    color: #428BCA;
+    text-align: right;
+    margin: 0;
+}
+/* 左边偏 -8px */
+.left-4 {
+    left: -4px;
+}
+/* 右边偏-8px */
+.right-4 {
+    right: -4px;
+}
+.mb-6 {
+    margin-bottom: 6px;
+}
+/** 聊天内容样式通用样式 */
+.content-other {
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 4px;
+    font-weight: 500;
+    position: relative;
+    width: 100%;
+}
+/** 左右三角的通用样式 */
+.triangle-common {
+    position: absolute;
+    border-top: solid 4px transparent;
+    border-bottom: solid 4px transparent;
+    display: block;
+    top: 4px;
+}
+/* 左三角 */
+.triangle-left {
+    border-right: solid 6px #ffffff;
+}
+/** 右三角 */
+.triangle-right {
+    border-left: solid 6px #85DD45;
+}
+/** 本人聊天内容展示效果 */
+.content-self {
+    background: #85DD45;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 4px;
+    float: right;
+    font-weight: 500;
+    position: relative;
+    width: 100%;
+}
+
+.chat-box {
+    padding: 0 !important;
+    position: relative;
+}
+.chat-content {
+    height: 100%;
+    width: 100%;
+    resize: none;
+}
+/* 发送按钮 */
+.send-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}

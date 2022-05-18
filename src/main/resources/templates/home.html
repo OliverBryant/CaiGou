@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tyhmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+
+
+
+</head>
+<body>
+<div class="body">
+    <div class="head">
+        <div class="left">
+            <span>致电我们：</span>
+            <span><b>+86 12345677</b></span>
+        </div>
+        <div class="right">
+            <a th:href="@{/caigou/user/login}" th:if="${session.loginUser}==null">登录</a>
+            <a th:href="@{/caigou/user/register}" th:if="${session.loginUser}==null">注册</a>
+
+            <a th:href="@{/caigou/user/pCommodity}" style="float: left;height:40px;"id="head_name"  th:if="${session.loginUser}!=null">
+                <div style="height: 35px" class="head_name" >
+                    <img th:src="${session.userImage}"  style="width: 35px;height: 35px;float: left;  border-radius: 50%;">
+                    <span style="display: inline-block;
+             vertical-align: middle;
+             line-height: 34px;padding-left: 5px " th:text="${session.userName}">潘登登</span></div>
+            </a>
+
+            <a th:href="@{/caigou/cart/myCart}" style="padding-left: 20px"  th:if="${session.loginUser}!=null"><img src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/cat.png" style="width: 35px;height: 35px"></a>
+
+            <div
+                    id="head_list"
+                    class="head_list"
+                    style="  position:fixed;
+          z-index: 99;
+          opacity:0.9;
+          width:100px;
+          height:120px;
+          background-color: white;
+          text-align: center">
+                <ul>
+                    <li><a th:href="@{/caigou/user/pCommodity}">个人中心</a></li>
+                    <li><a th:href="@{/caigou/commodity/release}">发布商品</a></li>
+                    <li><a th:href="@{/caigou/user/logout}">退出登录</a></li>
+                </ul>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="nav">
+          <div class="nav-logo">
+            <a th:href=@{/caigou/index}>
+              <img src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/logo.png">
+            </a>
+          </div>
+          <div class="nav-left">
+                <ul>
+                  <li><a th:href=@{/caigou/index} id="nav-home">首页</a></li>
+                  <li><a th:href=@{/caigou/mall}>商城</a></li>
+                  <li><a th:href=@{/caigou/about}>关于</a></li>
+                  <li><a th:href=@{/caigou/contact}>联系</a></li>
+                </ul>
+            </div>
+          <div class="nav-right">
+                <form th:action="@{/caigou/search}" method="get">
+                    <div>
+                        <input class="in" type="search" name="keyword" th:value="${keyword}" placeholder="输入搜索的商品">
+                        <button class="btn_in" type="submit">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+<!--轮播图-->
+      <div class="shu-box">
+        <div class="shufflingFigure-box">
+          <div  class="slide"><img th:src="${img1}" ></div>
+          <div  class="slide"><img th:src="${img2}" ></div>
+          <div  class="slide"><img th:src="${img3}" ></div>
+        </div>
+      </div>
+<!--本院推荐-->
+      <div class="collegeTheme" >
+        <div class="collegeTheme-title">
+          <h1 th:if="${session.loginUser}!=null">本院推荐</h1>
+            <h1 th:if="${session.loginUser}==null">商品推荐</h1>
+        </div>
+        <div class="teaser_grid_container" data-type="product">
+          <ul style="min-height:60px;" data-layout-mode="fitRows" >
+            <li th:each="maps:${commodity}">
+              <div class="collegeTheme-product" >
+                  <div class="post-thumb">
+                    <a  th:href="@{|/caigou/commodity/product?comId=${maps.com_id}|}"  class="bitImage" th:title="${maps.com_name}" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                      <img class="ag_image"
+                           th:src="${maps.com_image}"
+                           src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/CommodityPicture/006.jpg"
+                           th:alt-title="${maps.com_name}"
+                      ><i></i>
+                    </a>
+                  </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+
+                     th:href="@{|/caigou/commodity/product?comId=${maps.com_id}|}"
+                     class="bitImage-title" th:title="${maps.com_name}" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装" th:text="${maps.com_name}">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount" th:text="${maps.com_price}">¥16</span></div>
+
+              </div>
+            </li>
+
+
+
+
+
+
+
+
+
+          <!--  <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>-->
+          </ul>
+        </div>
+
+      </div>
+<!--猜你喜欢-->
+      <div class="collegeTheme" >
+        <div class="collegeTheme-title">
+          <h1 th:if="${session.loginUser}!=null">猜你喜欢</h1>
+        </div>
+        <div class="teaser_grid_container" data-type="product">
+          <ul style="min-height:60px;" data-layout-mode="fitRows">
+            <li th:each="maps:${guess}">
+              <div class="collegeTheme-product" >
+
+                <div class="post-thumb">
+                  <a th:href="@{|/caigou/commodity/product?comId=${maps.com_id}|}"  class="bitImage" th:title="${maps.com_name}" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         th:src="${maps.com_image}"
+                         src="/img/product_1.png"
+                         th:alt-title="${maps.com_name}"
+                    ><i></i>
+                  </a>
+                </div>
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     th:href="@{|/caigou/commodity/product?comId=${maps.com_id}|}"
+                     class="bitImage-title" th:title="${maps.com_name}" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装" th:text="${maps.com_name}">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount" th:text="${maps.com_price}">¥16</span></div>
+
+              </div>
+            </li>
+           <!-- <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>
+            <li>
+              <div class="collegeTheme-product">
+                <div class="post-thumb">
+                  <a href="#" class="bitImage" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">
+                    <img class="ag_image"
+                         src="/img/product_1.png"
+                         alt=""
+                         description=""
+                         data-title=""
+                         title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装"
+                         src-img=""><i></i>
+                  </a>
+                </div>
+
+
+                <div class="post-title">
+
+                  <a data-title="true"
+                     href="#"
+                     class="bitImage-title" title="绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装">绵柔巾一次性洗脸巾清洁卫生卸妆多用大包家庭装</a>
+
+                </div>
+
+
+                <div class="price_warp">
+                  <span class="amount">¥16</span></div>
+
+              </div>
+            </li>-->
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="left">
+            <a href="#">
+                <h2>联系我们</h2>
+            </a>
+            <address><a href="#">hdfkshdhfjk@email.com</a></address>
+            <a href="#">
+                <h2>+86 1231231231</h2>
+                <p class="p">(24小时咨询，全年无休)</p>
+            </a>
+
+        </div>
+        <div class="mid">
+            <div class="mid-left">
+                <h3>公司简介</h3>
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">产品</a></li>
+                    <li><a href="#">联系人</a></li>
+                    <li><a href="#">合作伙伴</a></li>
+                    <li><a href="#">咨询</a></li>
+                </ul>
+            </div>
+            <div class="mid-right">
+                <h3><strong>社交</strong></h3>
+                <ul>
+                  <li><a href="#">微信</a></li>
+                    <li><a href="#">微博</a></li>
+                    <li><a href="#">邮箱</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+
+        </div>
+    </footer>
+  <div class="bottom">
+    <p>版权归菜汪茂所有，侵权必究</p>
+  </div>
+</div>
+<script th:src="@{/js/home.js}">
+</script>
+</body>
+</html>

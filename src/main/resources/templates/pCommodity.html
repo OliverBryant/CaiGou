@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tyhmeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发布商品</title>
+        <link rel="stylesheet" th:href="@{/css/pCommodity.css}">
+        <link rel="stylesheet" href="//at.alicdn.com/t/font_2076502_mviykx7by9.css">
+        <link rel="stylesheet" href="//at.alicdn.com/t/font_2579490_336jdxpwnds.css">
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<!--    <link rel="stylesheet" href="pCommodity.css" type="text/css">-->
+</head>
+<body>
+<div>
+    <header class="head">
+        <div class="left">
+            <span>
+                致电我们:
+            </span>
+            <span>
+                <strong> +86 18868688888</strong>
+            </span>
+        </div>
+        <div class="right">
+            <a th:href="@{/caigou/user/login}" th:if="${session.loginUser}==null">登录</a>
+            <a th:href="@{/caigou/user/register}" th:if="${session.loginUser}==null">注册</a>
+
+            <a th:href="@{/caigou/user/pCommodity}" style="float: left;height:40px;" id="head_name"
+               th:if="${session.loginUser}!=null">
+                <div style="height: 35px" class="head_name">
+                    <img th:src="${session.userImage}"
+                         style="width: 35px;height: 35px;float: left;  border-radius: 50%;">
+                    <span style="display: inline-block;
+             vertical-align: middle;
+             line-height: 34px;padding-left: 5px " th:text="${session.userName}">潘登登</span></div>
+            </a>
+
+            <a th:href="@{/caigou/cart/myCart}" style="padding-left: 20px" th:if="${session.loginUser}!=null"><img
+                    src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/cat.png"
+                    style="width: 35px;height: 35px"></a>
+
+            <div
+                    id="head_list"
+                    class="head_list"
+                    style="  position:fixed;
+          z-index: 99;
+          opacity:0.9;
+          width:100px;
+          height:120px;
+          background-color: white;
+          text-align: center">
+                <ul>
+                    <li><a th:href="@{/caigou/user/pCommodity}">个人中心</a></li>
+                    <li><a th:href="@{/caigou/commodity/release}">发布商品</a></li>
+                    <li><a th:href="@{/caigou/user/logout}">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="body">
+        <div class="nav">
+            <div class="nav-logo">
+                <a th:href=@{/caigou/index}>
+                    <img src="/img/logo.png">
+                </a>
+            </div>
+            <div class="nav-left">
+                <ul>
+                    <li><a th:href="@{/caigou/index}">首页</a></li>
+                    <li><a th:href="@{/caigou/mall}">商城</a></li>
+                    <li><a th:href="@{/caigou/about}">关于</a></li>
+                    <li><a th:href="@{/caigou/contact}">联系</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <form th:action="@{/caigou/search}" method="get">
+                    <div>
+                        <input class="in" type="search" name="keyword" th:value="${keyword}" placeholder="输入搜索的商品">
+                        <button class="btn_in" type="submit">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="left">
+            <div class="nav">
+                <ul>
+                    <li class="shit">个人资料</li>
+                    <!--                    <li class="shit">地址管理</li>-->
+                    <li class="shit">修改密码</li>
+                    <li class="shit">我的发布</li>
+                    <li class="shit">我买到的</li>
+                    <li class="shit">我的订单</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right" id="right">
+            <!--            个人资料-->
+            <div class="own" id="own">
+                <form id="form" method="post" th:action="@{/caigou/user/image}" enctype="multipart/form-data">
+                    <div class="box">
+                        <p class="text1">头像</p>
+                        <div class="picture">
+                            <input id="input" type="file" name="uploadImage" onchange="this.form.submit()">
+                            <img id="img" th:src="${user.userImage}">
+                        </div>
+                    </div>
+                    <div class="box">
+                        <p class="text">昵称</p>
+                        <div class="picture">
+                            <input class="context" type="text" th:value="${user.userNick}" disabled name="userName"
+                                   placeholder="你的昵称"/>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <p class="text">邮箱</p>
+                        <div class="picture">
+                            <input class="context" type="text" th:value="${user.userEmail}" disabled name="userEmail"
+                                   placeholder="你的电子邮箱"/>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <p class="text">学院</p>
+                        <div class="picture">
+                            <input class="context" type="text" th:value="${user.userDepartment}" disabled
+                                   name="userDepartment" placeholder="你所在的学院"/>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <p class="text">班级</p>
+                        <div class="picture">
+                            <input class="context" type="text" th:value="${user.userClass}" disabled name="userClass"
+                                   placeholder="你所在的班级"/>
+                        </div>
+                    </div>
+                    <div class="own-btn-group">
+                        <button class="own-btn" id="xiugai" type="button">修改</button>
+                        <button class="own-btn" id="baocun" type="button">保存</button>
+                    </div>
+                </form>
+            </div>
+            <!--            地址管理-->
+            <!--<div class="AddressManage" id="AddressManage">
+                <ul>
+                    <li>
+                        <div class="icon">
+                            <div class="Lable"></div>
+                        </div>
+                        <div class="content">
+                            <div class="nameAndphone">
+                                <span class="name">菜狗一号</span>
+                                <span class="phone">123456789</span>
+                            </div>
+                            <div class="addres">
+                                <span class="Province">山东省</span>
+                                <span class="City">烟台市</span>
+                                <span class="Area">莱山区</span>
+                                <span class="Address">山东工商学院</span>
+                                <span class="defaul">默认</span>
+                            </div>
+                        </div>
+                        <form action="#">
+                            <div class="revise">
+                                <button type="button" value="1" class="iconfont icon-xiugai" ></button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>-->
+
+            <!--            修改/添加地址 -->
+            <!-- <div class="ChangeAddress" id="ChangeAddress">
+                 <form action="" method="get" >
+                     <ul>
+                         <li>
+                             <span class="title">收货人</span>
+                             <input class="text" type="text" name="userName" value="" placeholder="名字">
+                         </li>
+                         <li>
+                             <span class="title">手机号码</span>
+                             <input class="text" type="text" name="userphone" value="" placeholder="手机号">
+                         </li>
+                         <li>
+                             <span class="title">所在地区</span>
+                             <input class="text" type="text" name="userArea" value="" placeholder="省、市、区、街道">
+                         </li>
+                         <li>
+                             <span class="title">详细地址</span>
+                             <input class="text" type="text" name="userAddress" value="" placeholder="小区楼栋/乡村名称">
+                         </li>
+                         <li>
+                             <span>设为默认收获地址</span>
+                             <input type="checkbox" name="ches" class="choose" id="check"/>
+                         </li>
+                     </ul>
+                     <input class="btn" type="button" value="保存" id="save"/>
+                 </form>
+             </div>-->
+
+            <!--            修改密码-->
+            <div class="setPassword" id="setPassword">
+                <form th:action="@{/caigou/user/reversePassword}" method="post">
+                    <ul>
+                        <li>
+                            <span class="pasText">原密码</span>
+                            <input class="Pas-in" type="password" id="oldPassword" name="oldPassword"/>
+                        </li>
+                        <li>
+                            <span class="pasText">新密码</span>
+                            <input class="Pas-in" id="pas" type="password" name="newPassword"/>
+                        </li>
+                        <li>
+                            <span class="pasText">重复新密码</span>
+                            <input class="Pas-in" id="rePas" type="password" name="reNewPassword"/>
+                            <span id="error">两次密码不一致</span>
+                        </li>
+                        <li>
+                            <span class="pasText">验证码</span>
+                            <input class="ver" type="password" name="code"/>
+                            <button class="verBut" type="button">发送验证码</button>
+                        </li>
+                        <!--                        <button class="setBtn" id="setBtn" type="button">修改</button>-->
+                        <input class="setBtn" id="setBtn" type="submit" value="修改"/>
+                    </ul>
+                </form>
+            </div>
+            <!--            我的发布-->
+            <div class="Release" id="Release">
+                <ul>
+                    <li th:each="maps:${commodity}">
+                        <div class="shell">
+                            <div class="img">
+                                <img class="release-img1" th:src="${maps.com_image}">
+                                <img class="release-img2"
+                                     src="https://caigoufun.oss-cn-qingdao.aliyuncs.com/default/1344.jpeg"
+                                     th:if="${maps.com_status}==2">
+                            </div>
+                            <div class="describe">
+                                <p class="release-title" th:text="${maps.com_name}">标题标题标题标题标题标题标题标题标题标题标题标题</p>
+                                <p class="price">￥<span th:text="${maps.com_price}">16</span></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--            我买到的-->
+            <div class=" myBuy" id="myBuy">
+                <ul>
+                    <li th:each="maps:${purchase}">
+                        <div class="shell">
+                            <img th:src="${maps.com_image}" alt="tu" class="buy-img">
+                            <div class="describe">
+                                <p class="release-title" th:text="${maps.com_name}">标题标题标题标题标题标题标题标题标题标题标题标题</p>
+                                <p class="price">实际支付：￥<span th:text="${maps.com_price}">16</span></p>
+                                <a class="off" id="Evaluation">评价</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--            星级评价-->
+            <div class="evaluation" id="evaluation1">
+                <form th:action="@{/caigou/user/star}" method="post">
+                    <div class="Container">
+                        <div class="star-widget">
+                            <input type="radio" name="rate" id="rate-5" value="5">
+                            <label for="rate-5" class="iconfont icon-xingxing"></label>
+                            <input type="radio" name="rate" id="rate-4" value="4">
+                            <label for="rate-4" class="iconfont icon-xingxing"></label>
+                            <input type="radio" name="rate" id="rate-3" value="3">
+                            <label for="rate-3" class="iconfont icon-xingxing"></label>
+                            <input type="radio" name="rate" id="rate-2" value="2">
+                            <label for="rate-2" class="iconfont icon-xingxing"></label>
+                            <input type="radio" name="rate" id="rate-1" value="1">
+                            <label for="rate-1" class="iconfont icon-xingxing"></label>
+                        </div>
+                        <div class="ttt">
+                            <header id="head"></header>
+                            <div class="textarea">
+                                                <textarea name="eva" cols="30"
+                                                          placeholder="Describe your experience.."></textarea>
+                            </div>
+                            <div class="evaluationBtn">
+                                <button type="button" id="evabtn">评价</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--                        dingdan-->
+            <div class="order" id="order">
+                <ul>
+                    <li th:each="maps:${order}">
+                        <div class="shell">
+                                                        <img th:src="${maps.com_image}" alt="tu" class="buy-img">
+<!--                            <img src="../static/img/share.png" alt="tu" class="buy-img">-->
+                            <div class="describe">
+                                <div class="content">
+                                    <p class="number">订单号：<span th:text="${maps.order_id}">80980980980666</span></p>
+                                    <p class="date">创建时间：<span th:text="${maps.order_time}">2022-04-26 12:19</span></p>
+                                    <p class="release-title">配送地址：<span th:text="${maps.order_address}">西校512</span></p>
+                                </div><!--
+                                <div class="pice">
+                                    <p class="price">￥<span th:text="${maps.order_total}">18</span></p>
+                                    <p class="num">x<span th:text="num">3</span></p>
+                                </div>-->
+                            </div>
+                            <div class="tail">
+                                <div class="statu" >交易成功<span class="status" th:text="${maps.order_status}">0</span></div>
+                                <div class="real">实付款￥<i th:text="${maps.order_total}">54.00</i></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="top">
+            <div class="left">
+                <a href="#">
+                    <h2>联系我们</h2>
+                </a>
+                <address><a href="#">hdfkshdhfjk@email.com</a></address>
+                <a href="#">
+                    <h2>+86 1231231231</h2>
+                    <p class="p">(24小时咨询，全年无休)</p>
+                </a>
+            </div>
+            <div class="mid">
+                <div class="mid-left">
+                    <h3>公司简介</h3>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">产品</a></li>
+                        <li><a href="#">联系人</a></li>
+                        <li><a href="#">合作伙伴</a></li>
+                        <li><a href="#">咨询</a></li>
+                    </ul>
+                </div>
+                <div class="mid-right">
+                    <h3><strong>社交</strong></h3>
+                    <ul>
+                        <li><a href="#">微信</a></li>
+                        <li><a href="#">微博</a></li>
+                        <li><a href="#">邮箱</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right">
+                广告区域
+            </div>
+        </div>
+        <div class="bto">
+            <strong>版权归菜汪茂所有，侵权必究</strong>
+        </div>
+
+    </footer>
+
+
+</div>
+<script th:src="@{/js/pCommodity.js}"></script>
+</body>
+</html>
