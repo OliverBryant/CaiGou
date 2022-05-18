@@ -144,7 +144,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
         QueryWrapper<Commodity> queryWrapper = new QueryWrapper<>();
         queryWrapper
-                .eq("com_status", 1)
+                .eq("com_status", 2)
                 .like("com_name", keyword);
 
         IPage<Map<String, Object>> mapIPage = commodityMapper.selectMapsPage(page, queryWrapper);
